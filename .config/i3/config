@@ -2,7 +2,6 @@ set $mod Mod4
 set $term alacritty
 set $browser firefox
 set $fm pcmanfm
-#set $rec /home/foobar/shell/rec.sh
 
 gaps inner 0
 gaps outer 0
@@ -11,7 +10,6 @@ default_border pixel 6
 default_floating_border pixel 6
 
 font pango:GoMonoNerdFont 10
-#font pango:monospace 8
 
 set $bg_norm    #171a1d
 set $border_norm #171a1d
@@ -29,17 +27,10 @@ bindsym $mod+q kill
 bindsym $mod+e exec $fm
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Return exec $term
-#bindsym $mod+r exec $rec
-#bindsym $mod+Shift+e exec $rec stop
 bindsym $mod+b bar mode toggle
-#bindsym $mod+Shift+e exec "i3-msg exit"
-#bindsym $mod+Shift+r exec "i3-msg reload"
 
 bindsym $mod+Shift+s exec --no-startup-id maim -s -u | tee ~/Obrazy/src_$(date +%F_%H-%M-%S).png | xclip -selection clipboard -t image/png && notify-send "Screenshot" "Zrzut obszaru zapisany i skopiowany!" -i camera-photo
-#bindsym $mod+Shift+s exec "shotgun $(hacksaw -f '-i %i -g %g') - | xclip -t 'image/png' -selection clipboard && notify-send -u low screenshot 'region copied to clipboard'"
-#bindsym Shift+Print exec "shotgun - | xclip -t 'image/png' -selection clipboard && notify-send -u low screenshot 'fullscreen copied to clipboard'"
 bindsym $mod+Shift+space exec rofi -show run -modes run
-#bindsym $mod+period exec rofimoji --skin-tone=neutral --action=copy --clipboarder=xclip
 
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -82,7 +73,6 @@ bindsym $mod+Up mode "resize"
 bindsym $mod+Right mode "resize"
 bindsym $mod+Left mode "resize"
 
-#bindsym $mod+Shift+f exec ~/shell/sysinfo.sh
 bindsym $mod+Shift+f exec --no-startup-id /home/jakub/shell/system_info.sh
 bindsym $mod+Shift+v exec notify-send -r 1235 -t 5000 "volume" "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1)"
 bindsym $mod+Shift+w exec notify-send -r 1235 -t 5000 "weather" "$(curl -s 'wttr.in/?format=%t+%w')"
@@ -91,7 +81,6 @@ bindsym $mod+Shift+u exec notify-send -r 1235 -t 5000 "uptime" "$(awk '{print in
 bindsym $mod+Shift+x restart
 bindsym $mod+Shift+l exit
 
-# Przypisanie pulpitów do konkretnych ekranów
 workspace 1 output DP-0
 workspace 2 output DP-0
 workspace 3 output DP-0
@@ -116,8 +105,6 @@ bar {
         statusline #c5c5c6
         separator  #505050
 
-        # Kolory dla obszarów roboczych (workspaces)
-        #                      border  bg      text
         focused_workspace     #171a1d #171a1d #c5c5c6
         active_workspace      #171a1d #171a1d #c5c5c6
         inactive_workspace    #171a1d #171a1d #788696
@@ -125,12 +112,24 @@ bar {
     }
 }
 
-#exec_always autotiling
 exec picom &
 exec_always autotiling
 exec_always --no-startup-id feh --bg-tile ~/wallpapers/tiled3.jpg
 exec_always --no-startup-id xrandr --output DP-0 --mode 2560x1440 --rate 165.00 --primary --output DP-2 --mode 2560x1440 --rate 165.00 --right-of DP-0
 exec --no-startup-id caffeine -a
+exec --no-startup-id mintupdate-launcher
+
+for_window [class="MintUpdate.py"] floating enable, resize set 800 600, move position center
+for_window [class="PrismLauncher"] floating enable, resize set 800 600, move position center
+for_window [class="Virt-manager"] floating enable, resize set 800 600, move position center
+for_window [class="File-roller"] floating enable, resize set 800 600, move position center
+for_window [class="Gnome-disks"] floating enable, resize set 800 600, move position center
+for_window [class="Gnome-calculator"] floating enable, resize set 800 600, move position center
+for_window [class="Spotify"] floating enable, resize set 1280 960, move position center
+for_window [class="steam"] floating enable, resize set 1280 960, move position center
+for_window [class="Localsend"] floating enable, resize set 800 600, move position center
+for_window [class="Pcmanfm"] floating enable, resize set 800 600, move position center
+for_window [class="Io.github.celluloid_player.Celluloid"] floating enable, resize set 1600 1200, move position center
 
 floating_modifier Mod4
 tiling_drag modifier
