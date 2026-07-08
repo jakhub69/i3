@@ -111,6 +111,7 @@ exec picom &
 exec_always autotiling
 exec_always --no-startup-id feh --bg-tile ~/wallpapers/tiled3.jpg
 exec_always --no-startup-id xrandr --output DP-0 --mode 2560x1440 --rate 165.00 --primary --output DP-2 --mode 2560x1440 --rate 165.00 --right-of DP-0
+exec --no-startup-id caffeine -a
 
 floating_modifier Mod4
 tiling_drag modifier
