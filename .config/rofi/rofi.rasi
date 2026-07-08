@@ -1,0 +1,61 @@
+@theme ""
+
+* {
+    background-color: #171a1d;
+    border-color:     #788696;
+    text-color:       #c5c5c6;
+    font:             "GoMonoNerdFont 14";
+}
+
+window {
+    anchor:           center;
+    location:         center;
+    padding:          0px;
+    border:           6px;
+    border-color:     #788696;
+    width:            256px;
+    background-color: #788696;
+    children:         [ mainbox ];
+}
+
+mainbox {
+    orientation:      horizontal;
+    expand:           true;
+    width:            100%;
+    height:           100%;
+    background-color: #171a1d;
+    children:         [ entry, listview ];
+}
+
+entry {
+    enabled:          false;
+}
+
+listview {
+    layout:           horizontal;
+    lines:            1;
+    expand:           true;
+    height:           100%;
+    spacing:          0px;
+    margin:           4px -2px 4px -2px;
+    background-color: transparent;
+}
+
+element {
+    padding:          0px 10px;
+    expand:           true;
+    width:            100%;
+    height:           100%;
+    background-color: transparent;
+}
+
+element selected {
+    background-color: transparent;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       #c5c5c6;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}

@@ -1,0 +1,44 @@
+[window]
+dimensions = { columns=96, lines=32 }
+padding = { x=14, y=14 }
+dynamic_title = true
+
+[scrolling]
+history = 10000
+
+[font]
+offset = { x=-1, y=-1 }
+normal = { family="GoMonoNerdFont", style="Regular" }
+bold = { family="GoMonoNerdFont", style="Bold" }
+italic = { family="GoMonoNerdFont", style="Italic" }
+size = 14
+
+[cursor]
+style = { shape="Beam", blinking="Never" }
+thickness = 0.3
+blink_interval = 1000
+blink_timeout = 0
+
+[colors.primary]
+background = '#171a1d'
+foreground = '#c5c5c6'
+
+[colors.normal]
+black   = '#171a1d'
+red     = '#788696'
+green   = '#788696'
+yellow  = '#788696'
+blue    = '#788696'
+magenta = '#788696'
+cyan    = '#788696'
+white   = '#c5c5c6'
+
+[colors.bright]
+black   = '#515355'
+red     = '#788696'
+green   = '#788696'
+yellow  = '#788696'
+blue    = '#788696'
+magenta = '#788696'
+cyan    = '#788696'
+white   = '#c5c5c6'

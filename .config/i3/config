@@ -1,0 +1,116 @@
+set $mod Mod4
+set $term alacritty
+set $browser firefox
+set $fm pcmanfm
+#set $rec /home/foobar/shell/rec.sh
+
+gaps inner 0
+gaps outer 0
+
+default_border pixel 6
+default_floating_border pixel 6
+
+font pango:GoMonoNerdFont 10
+#font pango:monospace 8
+
+set $bg_norm    #171a1d
+set $border_norm #171a1d
+set $fg_norm    #c5c5c6
+set $bg_sel     #171a1d
+set $border_sel #788696
+set $fg_sel     #c5c5c6
+
+client.focused          $border_sel $bg_sel $fg_sel   $border_sel $border_sel
+client.focused_inactive $border_norm $bg_norm $fg_norm $border_norm $border_norm
+client.unfocused        $border_norm $bg_norm $fg_norm $border_norm $border_norm
+client.urgent           #788696 #788696 #c5c5c6 #788696 #788696
+
+bindsym $mod+q kill
+bindsym $mod+e exec $fm
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Return exec $term
+#bindsym $mod+r exec $rec
+#bindsym $mod+Shift+e exec $rec stop
+bindsym $mod+b bar mode toggle
+#bindsym $mod+Shift+e exec "i3-msg exit"
+#bindsym $mod+Shift+r exec "i3-msg reload"
+
+bindsym $mod+Shift+s exec --no-startup-id maim -s -u | tee ~/Obrazy/src_$(date +%F_%H-%M-%S).png | xclip -selection clipboard -t image/png && notify-send "Screenshot" "Zrzut obszaru zapisany i skopiowany!" -i camera-photo
+#bindsym $mod+Shift+s exec "shotgun $(hacksaw -f '-i %i -g %g') - | xclip -t 'image/png' -selection clipboard && notify-send -u low screenshot 'region copied to clipboard'"
+#bindsym Shift+Print exec "shotgun - | xclip -t 'image/png' -selection clipboard && notify-send -u low screenshot 'fullscreen copied to clipboard'"
+bindsym $mod+Shift+space exec rofi -show run -modes run
+#bindsym $mod+period exec rofimoji --skin-tone=neutral --action=copy --clipboarder=xclip
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+Left move output left
+bindsym $mod+Shift+Right move output right
+
+bindsym $mod+a floating toggle
+
+mode "resize" {
+    bindsym Up resize grow height 50 px
+    bindsym Down resize shrink height 50 px
+    bindsym Left resize grow width 50 px
+    bindsym Right resize shrink width 50 px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Down mode "resize"
+bindsym $mod+Up mode "resize"
+bindsym $mod+Right mode "resize"
+bindsym $mod+Left mode "resize"
+
+#bindsym $mod+Shift+f exec ~/shell/sysinfo.sh
+bindsym $mod+Shift+f exec --no-startup-id /home/jakub/shell/system_info.sh
+bindsym $mod+Shift+v exec notify-send -r 1235 -t 5000 "volume" "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1)"
+bindsym $mod+Shift+w exec notify-send -r 1235 -t 5000 "weather" "$(curl -s 'wttr.in/?format=%t+%w')"
+bindsym $mod+Shift+d exec notify-send -r 1235 -t 5000 "date" "$(date '+%a %d %b %H:%M:%S')"
+bindsym $mod+Shift+u exec notify-send -r 1235 -t 5000 "uptime" "$(awk '{print int($1/3600)"h "int(($1%3600)/60)"m"}' /proc/uptime)"
+bindsym $mod+w exec notify-send -r 1235 -t 5000 "workspaces" "$(i3-msg -t get_workspaces | jq -r '.[] | if .focused then "[" + .name + "]" else .name end' | paste -sd ' ' -)"
+
+bindsym $mod+Shift+x restart
+bindsym $mod+Shift+l exit
+
+# Przypisanie pulpitów do konkretnych ekranów
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
+workspace 5 output DP-0
+
+workspace 6 output DP-2
+workspace 7 output DP-2
+workspace 8 output DP-2
+workspace 9 output DP-2
+workspace 10 output DP-2
+
+#exec_always autotiling
+exec picom &
+exec_always autotiling
+exec_always --no-startup-id feh --bg-tile ~/wallpapers/tiled3.jpg
+exec_always --no-startup-id xrandr --output DP-0 --mode 2560x1440 --rate 165.00 --primary --output DP-2 --mode 2560x1440 --rate 165.00 --right-of DP-0
+
+floating_modifier Mod4
+tiling_drag modifier
