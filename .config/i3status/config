@@ -1,0 +1,45 @@
+general {
+        colors = true
+        interval = 1
+        output_format = "i3bar"
+        color_good = "#70a5eb"
+        color_degraded = "#de935f"
+        color_bad = "#505050"
+}
+
+order += "volume master"
+order += "memory"
+order += "cpu_usage"
+order += "ethernet enp34s0"
+order += "tztime date"
+order += "tztime time"
+
+volume master {
+        format = "VOL %volume"
+        format_muted = "VOL MUTED"
+        device = "default"
+}
+
+memory {
+        format = "RAM %used"
+        threshold_degraded = "1G"
+        format_degraded = "RAM LOW"
+}
+
+cpu_usage {
+        format = "CPU %usage"
+}
+
+ethernet enp34s0 {
+        format_up = "enp34s0 %ip"
+        format_down = "enp34s0 disconnected"
+        color_good = "#c5c5c6"
+}
+
+tztime date {
+        format = "%Y-%m-%d"
+}
+
+tztime time {
+        format = "%H:%M:%S"
+}

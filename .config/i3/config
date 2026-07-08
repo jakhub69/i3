@@ -88,8 +88,6 @@ bindsym $mod+Shift+v exec notify-send -r 1235 -t 5000 "volume" "$(pactl get-sink
 bindsym $mod+Shift+w exec notify-send -r 1235 -t 5000 "weather" "$(curl -s 'wttr.in/?format=%t+%w')"
 bindsym $mod+Shift+d exec notify-send -r 1235 -t 5000 "date" "$(date '+%a %d %b %H:%M:%S')"
 bindsym $mod+Shift+u exec notify-send -r 1235 -t 5000 "uptime" "$(awk '{print int($1/3600)"h "int(($1%3600)/60)"m"}' /proc/uptime)"
-bindsym $mod+w exec notify-send -r 1235 -t 5000 "workspaces" "$(i3-msg -t get_workspaces | jq -r '.[] | if .focused then "[" + .name + "]" else .name end' | paste -sd ' ' -)"
-
 bindsym $mod+Shift+x restart
 bindsym $mod+Shift+l exit
 
@@ -105,6 +103,27 @@ workspace 7 output DP-2
 workspace 8 output DP-2
 workspace 9 output DP-2
 workspace 10 output DP-2
+
+bar {
+    position top
+    status_command i3status
+    font pango:GoMonoNerdFont 11
+    workspace_buttons yes
+    strip_workspace_numbers yes
+
+    colors {
+        background #171a1d
+        statusline #c5c5c6
+        separator  #505050
+
+        # Kolory dla obszarów roboczych (workspaces)
+        #                      border  bg      text
+        focused_workspace     #171a1d #171a1d #c5c5c6
+        active_workspace      #171a1d #171a1d #c5c5c6
+        inactive_workspace    #171a1d #171a1d #788696
+        urgent_workspace      #171a1d #171a1d #ff5555
+    }
+}
 
 #exec_always autotiling
 exec picom &

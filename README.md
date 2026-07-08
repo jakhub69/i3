@@ -4,7 +4,7 @@
 
 highly optimized, minimal, and lightweight i3wm setup. no desktop environment bloat, no heavy compositors eating cpu cycles, and zero background telemetry. built strictly for raw performance, maximum responsiveness, and high-fps gaming (pushing 800+ fps in cs2 on a ryzen 7 5700x3d and rtx 4070). x11 still rules.
 
-![](https://i.imgur.com/3ZXcWuX.png)
+![](https://i.imgur.com/P7nblkL.png)
 
 ## features
 - zero-bloat philosophy: stripped down to free up every possible system resource.
