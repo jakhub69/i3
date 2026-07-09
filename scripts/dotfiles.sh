@@ -16,6 +16,7 @@ cp -a .config/. "$USER_HOME/.config/"
 if [ -d wallpapers ]; then
     mkdir -p "$USER_HOME/Pictures/Wallpapers"
     cp -a wallpapers/. "$USER_HOME/Pictures/Wallpapers/"
+    cp -a wallpapers/. "$USER_HOME/wallpapers"
 fi
 
 if [ -d shell ]; then

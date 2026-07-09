@@ -14,8 +14,6 @@ echo "==> Konfiguracja środowiska dla gier"
 PACKAGES=(
 steam
 gamemode
-mangohud
-vulkan-tools
 mesa-demos
 )
 
