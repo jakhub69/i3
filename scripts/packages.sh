@@ -38,17 +38,13 @@ xinit
 xrandr
 xset
 xrdb
-xorg-xrandr
-xorg-xsetroot
-xorg-setxkbmap
 
 mesa-demos
 mesa-vulkan-intel
 vulkan-loader
-vulkan-tools
+Vulkan-Tools
 mesa-dri
 mesa-vaapi
-mesa-vdpau
 
 dbus
 
@@ -81,16 +77,15 @@ pavucontrol
 playerctl
 
 gamemode
-mangohud
+MangoHud
 
 steam
-discord
 
 python3
 python3-pip
 
 font-awesome6
-noto-fonts
+noto-fonts-ttf
 noto-fonts-emoji
 
 xdg-user-dirs
@@ -148,17 +143,6 @@ for pkg in "${BT_PACKAGES[@]}"; do
     fi
 
 done
-
-###############################################################################
-# Autotiling
-###############################################################################
-
-echo
-echo "==> autotiling"
-
-if ! command -v autotiling >/dev/null 2>&1; then
-    pip3 install --user autotiling
-fi
 
 ###############################################################################
 # Katalogi użytkownika
